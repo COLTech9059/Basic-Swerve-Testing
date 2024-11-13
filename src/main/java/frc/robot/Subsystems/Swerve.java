@@ -1,5 +1,8 @@
 package frc.robot.Subsystems;
 
-public class Swerve {
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class Swerve extends SubsystemBase
+{
 
 }
