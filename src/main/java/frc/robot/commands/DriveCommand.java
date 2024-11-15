@@ -4,39 +4,36 @@
 
 package frc.robot.Commands;
 
+import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Subsystems.Swerve;
 
-// /** An example command that uses an example subsystem. */
-// public class DriveCommand extends Command {
-//   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-//   private final m_Drive m_subsystem;
+/** An example command that uses an example subsystem. */
+public class DriveCommand extends Command {
 
-//   /**
-//    * Creates a new ExampleCommand.
-//    *
-//    * @param subsystem The subsystem used by this command.
-//    */
-//   public ExampleCommand(ExampleSubsystem subsystem) {
-//     m_subsystem = subsystem;
-//     // Use addRequirements() here to declare subsystem dependencies.
-//     addRequirements(subsystem);
-//   }
+  private final Swerve m_Swerve;
+  private final DoubleSupplier speed;
+  private final DoubleSupplier turn;
 
-//   // Called when the command is initially scheduled.
-//   @Override
-//   public void initialize() {}
+  /**
+   * Creates a new DriveCommand
+   *
+   * @param subsystem The subsystem used by this command.
+   */
+  public DriveCommand(Swerve m_Swerve, DoubleSupplier speed, DoubleSupplier turn) {
+    
+    // Variable assignment
+    this.m_Swerve = m_Swerve;
+    this.speed = speed;
+    this.turn = turn;
 
-//   // Called every time the scheduler runs while the command is scheduled.
-//   @Override
-//   public void execute() {}
+    addRequirements(m_Swerve);
+  }
 
-//   // Called once the command ends or is interrupted.
-//   @Override
-//   public void end(boolean interrupted) {}
-
-//   // Returns true when the command should end.
-//   @Override
-//   public boolean isFinished() {
-//     return false;
-//   }
-// }
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() 
+  {
+    m_Swerve.basicDrive(speed.getAsDouble(), turn.getAsDouble());
+  }
+}

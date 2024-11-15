@@ -6,10 +6,24 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.Commands.DriveCommand;
+import frc.robot.Subsystems.Swerve;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class RobotContainer {
+
+  private final Swerve m_Swerve = new Swerve();
+
   public RobotContainer() {
     configureBindings();
+
+    m_Swerve.setDefaultCommand
+    (
+      new DriveCommand
+      (m_Swerve, 
+      () -> IO.dController.getLeftY(), 
+      () -> IO.dController.getRightX())
+    );
   }
 
   private void configureBindings() {}

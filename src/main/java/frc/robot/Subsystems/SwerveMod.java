@@ -19,12 +19,12 @@ public class SwerveMod
     {
         this.modID = modID;
 
-        driveMotor = new TalonFX(constants.driveID);
-        steerMotor = new TalonFX(constants.steerID);
-        // angleEncoder = new CANcoder(constants.CANCoderID);
+        driveMotor = new TalonFX(constants.driveID, Constants.driveBus);
+        steerMotor = new TalonFX(constants.steerID, Constants.driveBus);
+        // angleEncoder = new CANcoder(constants.CANCoderID, Constants.driveBus);
     }
 
-    public void basicDrive(double speed, double turn)
+    public void setModule(double speed, double turn)
     {
         driveMotor.set(speed * Constants.maxSpeed);
         steerMotor.set(turn * Constants.maxTurnSpeed);
